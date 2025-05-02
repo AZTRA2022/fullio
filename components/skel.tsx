@@ -4,7 +4,7 @@ import {
     AvatarFallback,
     AvatarImage,
   } from "@/components/ui/avatar"
-import { User } from "lucide-react"
+import { BellRing, Check, User } from "lucide-react"
    
 export function Skel() {
   return (
@@ -13,11 +13,12 @@ export function Skel() {
         <Skeleton className="h-4 w-[250px]" />
         <Skeleton className="h-4 w-[200px]" />
       </div>
-      <Avatar>
+      <Avatar className="w-10" >
         <AvatarImage src={undefined} alt="@shadcn" />
         <AvatarFallback>
             <User />
         </AvatarFallback>
+            <span className="flex h-2 w-2 translate-y-1 translate-x-[-5px] rounded-full bg-red-500" />
     </Avatar>
     </div>
   )
