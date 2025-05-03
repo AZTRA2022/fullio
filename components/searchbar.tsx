@@ -36,10 +36,9 @@ export default function Searchbar() {
     const [quantity, setSliderValue] = useState(20)
     const [category,setCategory] = useState();
     return (
-
-        <div className="flex gap-2" >
+        <div className="flex gap-2 mb-4 " >
             <Popover>
-                <PopoverTrigger asChild>
+                <PopoverTrigger asChild> 
                     <Button variant="outline"> <ListFilterPlus size={20} color="black" /> filter</Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-80">

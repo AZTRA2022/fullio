@@ -50,6 +50,8 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp"
+import supabase from '@/lib/supabase'
+import { Phone } from 'lucide-react'
 
 
 export default function SignUp() {
@@ -68,6 +70,16 @@ export default function SignUp() {
     try {
       // Assuming an async registration function
       console.log(values)
+      await supabase.auth.signUp({
+        email:values.email,
+        password:values.password,
+        phone:values.phone,
+        options:{
+          data:{
+            name : values.name,
+          }
+        }
+      })
       toast(
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(values, null, 2)}</code>
@@ -83,9 +95,9 @@ export default function SignUp() {
     <div className="flex min-h-[60vh] h-full w-full items-center justify-center px-4">
       <Card className="mx-auto w-10/12">
         <CardHeader>
-          <CardTitle className="text-2xl">Register</CardTitle>
+          <CardTitle className="text-2xl">S'enregistrer</CardTitle>
           <CardDescription>
-            Create a new account for reach the next step.
+            Creer un compte pour accéder aux étapes suivantes.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -98,9 +110,9 @@ export default function SignUp() {
                   name="name"
                   render={({ field }) => (
                     <FormItem className="grid gap-2">
-                      <FormLabel htmlFor="name">Full Name</FormLabel>
+                      <FormLabel htmlFor="name">Nom</FormLabel>
                       <FormControl>
-                        <Input id="name" placeholder="John Doe" {...field} />
+                        <Input id="name" placeholder="Entrez ici..." {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -117,7 +129,7 @@ export default function SignUp() {
                       <FormControl>
                         <Input
                           id="email"
-                          placeholder="johndoe@mail.com"
+                          placeholder="...@ext.domain"
                           type="email"
                           autoComplete="email"
                           {...field}

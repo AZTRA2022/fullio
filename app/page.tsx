@@ -12,9 +12,9 @@ export default function Home() {
         <div className="items-center flex flex-col " >
           <Image src={homeImage} alt="homeImage" />
             <div className="text-center ">
-              <h1 className="text-2xl " >Training Designed Engines (TDE) .</h1>
-              <p className="font-light text-center p-4 " >One of the most powerfull Firm in dataset managment.
-              We are able to reac all the data <br/>which was upload on the Net since his creation.
+              <h1 className="text-2xl " >Official Administration Results (OAR) .</h1>
+              <p className="font-light text-center p-4 " >Nous vous prodiguons vos statistiqus ainsi que vos resultats
+              <br/>Il vous suffit juste de suivre les etapes mentinnés.
               </p>
             </div>
         </div>

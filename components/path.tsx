@@ -27,12 +27,12 @@ export function Path() {
         </BreadcrumbItem>
         <BreadcrumbItem>
           <BreadcrumbLink>
-            <Link href="/joinus">Join Us</Link>
+            <Link href="/joinus">Rejoindre</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <Link href="/dataset">Dataset Models</Link>
+          <Link href="/dataset">Statistiques Globales</Link>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
