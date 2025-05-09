@@ -1,7 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { env } from 'node:process'
 
-// Create a single supabase client for interacting with your database
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY)
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL?.toString() || "", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.toString() || "");
 
 export default supabase;

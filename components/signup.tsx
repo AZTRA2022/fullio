@@ -24,6 +24,19 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+import supabase from '@/lib/supabase'
+import { useState } from 'react'
+
+
+
+
+
 
 // Define validation schema using Zod
 const formSchema = z
@@ -44,17 +57,9 @@ const formSchema = z
     message: 'Passwords do not match',
   })
 
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@/components/ui/input-otp"
-import supabase from '@/lib/supabase'
-import { Phone } from 'lucide-react'
-
-
 export default function SignUp() {
+  const [message,setMessage] = useState({})
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -70,21 +75,39 @@ export default function SignUp() {
     try {
       // Assuming an async registration function
       console.log(values)
-      await supabase.auth.signUp({
-        email:values.email,
-        password:values.password,
-        phone:values.phone,
-        options:{
-          data:{
-            name : values.name,
-          }
-        }
-      })
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>,
-      )
+      const { data, error } = await supabase.auth.signUp({
+        email: values.email.toString(),
+        password: values.password.toString(),
+        options: {
+          data: {
+            name: values.name.toString(),
+            // Si vous souhaitez inclure le téléphone, assurez-vous qu'il est valide
+            phone: values.phone ? values.phone.toString() : undefined,
+          },
+        },
+      });
+      
+      if (error) {
+        console.error("Error signing up:", error.message);
+      } else {
+        console.log("User signed up successfully:", data);
+      }
+      /*  if (data) {
+        setMessage({variant:"default",title:data.user?.email , message:"User was created with success !"})
+      }else{
+        setMessage({variant:"destructive",title:error?.name , message:error?.message})
+ 
+      }
+      
+        toast("" + data ? data.user?.email : error?.name, {
+          description: data ? "Account created with success " : error?.message,
+          action: {
+            label: "Compris",
+            onClick: () => console.log("Sonner checked "),
+          },
+        })
+          */
+      
     } catch (error) {
       console.error('Form submission error', error)
       toast.error('Failed to submit the form. Please try again.')
@@ -259,9 +282,9 @@ export default function SignUp() {
             </form>
           </Form>
           <div className="mt-4 text-center text-sm">
-            Already have an account?{' '}
-            <Link href="#" className="underline">
-              Login
+            Deja un compte ?{' '}
+            <Link href="/login" className="underline">
+              Se connecter
             </Link>
           </div>
         </CardContent>

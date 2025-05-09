@@ -10,7 +10,7 @@ export default function Navbar(){
                 <h1>BenchMark.io</h1>
                 
             </div>
-            <Path />
+            
             <Skel />
             
         </div>

@@ -1,10 +1,23 @@
+'use client'
+
 import Navbar from "@/components/navbar";
-import { BrainCircuit, Dna, Hand } from "lucide-react";
 import homeImage from '@/public/beautifullGood.png'
 import Image from "next/image";
 import SignUp from "@/components/signup";
+import { useEffect } from "react";
+import supabase from "@/lib/supabase";
 
 export default function Home() {
+  useEffect(()=>{
+    async function checkSession(){
+      const session = await supabase.auth.getSession();
+      if(session.data.session){
+      }else{
+
+      }
+    }
+    checkSession()
+  },[])
   return (
     <div className="flex h-screen flex-col items-center justify-items-center  font-[family-name:var(--font-roboto-sans)]">
       <Navbar />
